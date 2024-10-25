@@ -10,7 +10,7 @@
 # https://gradle.org/
 # https://github.com/gradle/gradle
 
-image: docker:latest
+image: gradle-with-docker:latest
 
 services:
   - docker:dind
