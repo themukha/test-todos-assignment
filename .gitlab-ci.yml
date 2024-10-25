@@ -47,5 +47,9 @@ pages:
   artifacts:
     paths:
       - public
+      - build/test-results/test/*.xml
+    reports:
+      junit:
+        - build/test-results/test/*.xml
   only:
     - master
