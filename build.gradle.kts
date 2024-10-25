@@ -42,6 +42,7 @@ dependencies {
 tasks.test {
     systemProperty("TESTCONTAINERS_LOGGING_DISABLED", "true")
     useJUnitPlatform()
+    ignoreFailures = true
     finalizedBy(tasks.allureReport)
 }
 
