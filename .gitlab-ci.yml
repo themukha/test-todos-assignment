@@ -10,19 +10,32 @@
 # https://gradle.org/
 # https://github.com/gradle/gradle
 
-image: gradle:alpine
+image: docker:latest
 
 services:
   - docker:dind
 
 stages:
+  - build
   - test
   - pages
 
+build:
+  stage: build
+  image: gradle:alpine
+  script:
+    - gradle assemble
+  artifacts:
+    paths:
+      - build/libs/*.jar
+      - build/reports/
+
 test:
   stage: test
+  image: gradle:alpine
+  dependencies:
+    - build
   script:
-    - docker info
     - gradle test
 
 pages:
