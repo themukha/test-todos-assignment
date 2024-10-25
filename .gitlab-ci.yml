@@ -37,6 +37,10 @@ test:
     - build
   script:
     - gradle test
+  artifacts:
+    paths:
+      - build/test-results/test/*.xml
+      - build/reports/allure-report
 
 pages:
   stage: pages
