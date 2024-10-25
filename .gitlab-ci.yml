@@ -41,6 +41,9 @@ test:
     paths:
       - build/test-results/test/*.xml
       - build/reports/allure-report
+    reports:
+      junit:
+        - build/test-results/test/*.xml
 
 pages:
   stage: pages
@@ -52,8 +55,5 @@ pages:
     paths:
       - public
       - build/test-results/test/*.xml
-    reports:
-      junit:
-        - build/test-results/test/*.xml
   only:
     - master
