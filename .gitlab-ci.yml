@@ -10,8 +10,16 @@
 # https://gradle.org/
 # https://github.com/gradle/gradle
 
-image: gradle:alpine
+image: docker:latest
+
+services:
+  - docker:dind
+
+stages:
+  - test
 
 test:
   stage: test
-  script: gradle test
+  script:
+    - docker info
+    - gradle test
