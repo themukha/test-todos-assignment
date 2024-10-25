@@ -10,16 +10,29 @@
 # https://gradle.org/
 # https://github.com/gradle/gradle
 
-image: docker:latest
+image: gradle:alpine
 
 services:
   - docker:dind
 
 stages:
   - test
+  - pages
 
 test:
   stage: test
   script:
     - docker info
     - gradle test
+
+pages:
+  stage: pages
+  dependencies:
+    - test
+  script:
+    - mv build/reports/allure-report/allureReport public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
