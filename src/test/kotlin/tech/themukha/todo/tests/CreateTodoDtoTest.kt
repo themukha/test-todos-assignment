@@ -32,4 +32,70 @@ class CreateTodoDtoTest : BaseTest() {
             }
     }
 
+    @Test
+    @DisplayName("Create Todo with empty text")
+    fun `Create Todo with empty text`() {
+        val newTodo = TodoDto(
+            id = IdGenerator.generateRandomULong(),
+            text = ""
+        )
+
+        TestFlow()
+            .step("Create todo") {
+                `Add new TODO`(
+                    newTodo,
+                    expectedResponseCode = HttpStatus.SC_CREATED
+                )
+            }
+            .step("Check todo") {
+                `Check TODO by ID`(
+                    newTodo
+                )
+            }
+    }
+
+    @Test
+    @DisplayName("Create Todo with max long text")
+    fun `Create Todo with max long text`() {
+        val newTodo = TodoDto(
+            id = IdGenerator.generateRandomULong(),
+            text = "C".repeat(128)
+        )
+
+        TestFlow()
+            .step("Create todo") {
+                `Add new TODO`(
+                    newTodo,
+                    expectedResponseCode = HttpStatus.SC_CREATED
+                )
+            }
+            .step("Check todo") {
+                `Check TODO by ID`(
+                    newTodo
+                )
+            }
+    }
+
+    @Test
+    @DisplayName("Create Todo with max ULong id")
+    fun `Create Todo with max ULong id`() {
+        val newTodo = TodoDto(
+            id = ULong.MAX_VALUE,
+            text = "New todo item 888"
+        )
+
+        TestFlow()
+            .step("Create todo") {
+                `Add new TODO`(
+                    newTodo,
+                    expectedResponseCode = HttpStatus.SC_CREATED
+                )
+            }
+            .step("Check todo") {
+                `Check TODO by ID`(
+                    newTodo
+                )
+            }
+    }
+
 }
