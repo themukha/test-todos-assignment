@@ -15,6 +15,7 @@
     <logger name="tech.themukha" level="INFO"/>
     <logger name="io.qameta.allure.AllureLifecycle" level="OFF"/>
     <logger name="org.testcontainers" level="OFF" />
+    <logger name="tc" level="ERROR" />
     <root level="INFO">
         <appender-ref ref="CONSOLE" />
     </root>
