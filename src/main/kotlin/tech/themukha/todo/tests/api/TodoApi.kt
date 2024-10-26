@@ -29,49 +29,51 @@ open class TodoApi {
         ).toParams()
         return callApi(
             RestEndpoint.GET_ALL_TODOS,
+            requestBody = null,
             queryParams = queryParams,
             expectedResponseCode = expectedResponseCode
         )
     }
 
-    @Step("Add new TODO with ID {newTodo.id}")
+    @Step("Add new TODO with ID")
     fun `Add new TODO`(
         newTodo: TodoDto,
         expectedResponseCode: Int = HttpStatus.SC_CREATED,
-    ): Void? {
-        return callApi(
+    ) {
+        callApi<TodoDto, TodoDto>(
             RestEndpoint.POST_TODO,
             requestBody = newTodo,
             expectedResponseCode = expectedResponseCode,
         )
     }
 
-    @Step("Update existing TODO with ID {putTodo.id}")
+    @Step("Update existing TODO with ID")
     fun `Update existing TODO`(
         putTodo: TodoDto,
         expectedResponseCode: Int = HttpStatus.SC_OK,
-    ): Void? {
-        return callApi(
+    ) {
+        callApi<TodoDto, TodoDto>(
             RestEndpoint.PUT_TODO,
             requestBody = putTodo,
             expectedResponseCode = expectedResponseCode,
         )
     }
 
-    @Step("Delete existing TODO with ID {todoId}")
+    @Step("Delete existing TODO with ID")
     fun `Delete existing TODO`(
         todoId: ULong,
         expectedResponseCode: Int = HttpStatus.SC_NO_CONTENT,
-    ): Void? {
+    ) {
         val pathParams = mapOf("todoId" to todoId)
-        return callApi(
+        callApi<TodoDto, TodoDto>(
             RestEndpoint.DELETE_TODO,
+            requestBody = null,
             pathParams = pathParams,
             expectedResponseCode = expectedResponseCode,
         )
     }
 
-    @Step("Check TODO by ID {expectedTodo.id}")
+    @Step("Check TODO by ID")
     fun `Check TODO by ID`(
         expectedTodo: TodoDto,
     ) {

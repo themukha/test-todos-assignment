@@ -20,7 +20,7 @@ class PerformanceTest : BaseTest() {
             .step("Performance Test") {
                 repeat(queryQuality) {
                     val newTodo = TodoDto(
-                        id = counter.getAndIncrement().toLong().toULong(),
+                        id = counter.getAndIncrement().toULong(),
                         text = "Performance Test $counter"
                     )
                     val startTime = System.currentTimeMillis()
@@ -36,7 +36,7 @@ class PerformanceTest : BaseTest() {
                 val percentile95 = percentile(requestTimes, 95.0)
                 val percentile99 = percentile(requestTimes, 99.0)
 
-                logger.info("Total time: $totalTime ms") //  Вывод в миллисекундах
+                logger.info("Total time: $totalTime ms")
                 logger.info("Average time: $averageTime ms")
                 logger.info("95th percentile: $percentile95 ms")
                 logger.info("99th percentile: $percentile99 ms")

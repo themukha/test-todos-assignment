@@ -1,16 +1,16 @@
 package tech.themukha.todo.tests.utils
 
-import com.google.gson.Gson
-import java.lang.reflect.Type
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.serializer
 
 object JsonUtils {
-    private val gson = Gson()
-
-    fun <T> fromJson(json: String, classOfT: Type): T {
-        return gson.fromJson(json, classOfT)
+    val json = Json {
+        ignoreUnknownKeys = true
+        encodeDefaults = true
     }
 
-    fun toJson(obj: Any): String {
-        return gson.toJson(obj)
-    }
+    inline fun <reified T> fromJson(jsonString: String): T = json.decodeFromString(jsonString)
+
+    inline fun <reified T> toJson(obj: T): String = json.encodeToString(serializer(), obj)
+
 }

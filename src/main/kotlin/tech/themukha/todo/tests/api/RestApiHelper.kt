@@ -13,9 +13,9 @@ import tech.themukha.todo.tests.utils.RestAssuredExtensions.extractAs
 
 object RestApiHelper {
 
-    inline fun <reified T> callApi(
+    inline fun <reified T, reified R : Any> callApi(
         endpoint: RestEndpoint,
-        requestBody: Any? = null,
+        requestBody: R? = null,
         pathParams: Map<String, Any>? = null,
         queryParams: Map<String, Any>? = null,
         expectedResponseCode: Int = HttpStatus.SC_OK,
@@ -24,16 +24,22 @@ object RestApiHelper {
 
         if (response.statusCode != expectedResponseCode) throw ApiException(expectedResponseCode, response.statusCode, response.body.asString())
 
-        if (response.statusCode in 200..299) {
-            return response.extractAs<T>()
+        return if (response.statusCode in 200..299) {
+            val responseBody = response.body.asString()
+            if (responseBody.isEmpty()) {
+                null
+            } else {
+                response.extractAs<T>()
+            }
+        } else {
+            null
         }
-        return null
     }
 
     @PublishedApi
-    internal fun executeRequest(
+    internal inline fun <reified R> executeRequest(
         endpoint: RestEndpoint,
-        requestBody: Any? = null,
+        requestBody: R? = null,
         pathParams: Map<String, Any?>? = null,
         queryParams: Map<String, Any>? = null,
         expectedResponseCode: Int = HttpStatus.SC_OK,
