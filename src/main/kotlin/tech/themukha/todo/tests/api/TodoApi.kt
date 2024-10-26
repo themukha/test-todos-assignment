@@ -17,7 +17,7 @@ open class TodoApi {
         baseURI = TestConfig.BASE_URL
     }
 
-    @Step("Get all TODOs")
+    @Step("Get all TODOs with offset {offset} and limit {limit}")
     fun `Get all TODOs`(
         expectedResponseCode: Int = HttpStatus.SC_OK,
         offset: Int? = null,
@@ -34,7 +34,7 @@ open class TodoApi {
         )
     }
 
-    @Step("Add new TODO")
+    @Step("Add new TODO with ID {newTodo.id}")
     fun `Add new TODO`(
         newTodo: TodoDto,
         expectedResponseCode: Int = HttpStatus.SC_CREATED,
@@ -46,7 +46,7 @@ open class TodoApi {
         )
     }
 
-    @Step("Update existing TODO")
+    @Step("Update existing TODO with ID {putTodo.id}")
     fun `Update existing TODO`(
         putTodo: TodoDto,
         expectedResponseCode: Int = HttpStatus.SC_OK,
@@ -58,7 +58,7 @@ open class TodoApi {
         )
     }
 
-    @Step("Delete existing TODO")
+    @Step("Delete existing TODO with ID {todoId}")
     fun `Delete existing TODO`(
         todoId: ULong,
         expectedResponseCode: Int = HttpStatus.SC_NO_CONTENT,
@@ -71,7 +71,7 @@ open class TodoApi {
         )
     }
 
-    @Step("Check TODO by ID")
+    @Step("Check TODO by ID {expectedTodo.id}")
     fun `Check TODO by ID`(
         expectedTodo: TodoDto,
     ) {
