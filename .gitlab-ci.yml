@@ -10,7 +10,7 @@
 # https://gradle.org/
 # https://github.com/gradle/gradle
 
-image: gradle-with-docker:latest
+image: gradle:jdk21
 
 services:
   - docker:dind
@@ -22,7 +22,6 @@ stages:
 
 build:
   stage: build
-  image: gradle:alpine
   script:
     - gradle assemble
   artifacts:
@@ -32,7 +31,6 @@ build:
 
 test:
   stage: test
-  image: gradle:alpine
   dependencies:
     - build
   script:
