@@ -99,4 +99,26 @@ class CreateTodoDtoTest : BaseTest() {
             }
     }
 
+    @Test
+    @DisplayName("Create Todo with completed status")
+    fun `Create Todo with completed status`() {
+        val newTodo = TodoDto(
+            id = IdGenerator.generateRandomLong(),
+            text = "C".repeat(16331),
+            completed = true
+        )
+
+        TestFlow()
+            .step("Create todo") {
+                `Add new TODO`(
+                    newTodo
+                )
+            }
+            .step("Check todo") {
+                `Check TODO by ID`(
+                    newTodo
+                )
+            }
+    }
+
 }

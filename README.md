@@ -33,9 +33,11 @@
 * [X] **Successful creation of a TODO:** Verify a 200 OK status and retrieval of the created TODO.
 * [X] **Test with empty text:** Verify behavior when the `text` field is empty.
 * [X] **Test with max long text:** Verify behavior with character limits.
-* [X] **Test with max long id:** Verify behavior with ID max value.
-* [ ] **Test with over than max long text:** Verify behavior with exceeding character limits.
-* [ ] **Test with different completed statuses:** Create TODOs with `completed` set to true and false.
+* [ ] **Test with max long id:** Verify behavior with ID max value.
+  > RestAssured doesn't support ULong, so there is no way to send ULong values as ID. RestAssured automatically converts it to signed 32-bit integer.
+    Need to use another library to send the requests.
+* [X] **Test with over than max long text:** Verify behavior with exceeding character limits.
+* [X] **Test with completed status:** Create TODO with `completed` set to true.
 * [ ] **Checklist for future tests:**
     * [ ] Test with special characters in the `text` field.
     * [ ] Load testing with concurrent requests via Gatling.
