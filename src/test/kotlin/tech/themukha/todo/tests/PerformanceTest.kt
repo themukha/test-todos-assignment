@@ -8,6 +8,7 @@ import tech.themukha.todo.tests.model.TodoDto
 import tech.themukha.todo.tests.utils.PerformanceTestUtil.percentile
 import java.util.concurrent.atomic.AtomicLong
 
+@DisplayName("Performance Test")
 class PerformanceTest : BaseTest() {
     @Test
     @DisplayName("Test Post Todos Performance")
@@ -20,7 +21,7 @@ class PerformanceTest : BaseTest() {
             .step("Performance Test") {
                 repeat(queryQuality) {
                     val newTodo = TodoDto(
-                        id = counter.getAndIncrement().toULong(),
+                        id = counter.getAndIncrement(),
                         text = "Performance Test $counter"
                     )
                     val startTime = System.currentTimeMillis()

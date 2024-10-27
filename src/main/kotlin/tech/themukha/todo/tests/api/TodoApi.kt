@@ -4,7 +4,8 @@ import io.qameta.allure.Step
 import io.restassured.RestAssured.baseURI
 import org.apache.http.HttpStatus
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.assertAll
 import tech.themukha.todo.tests.api.RestApiHelper.callApi
 import tech.themukha.todo.tests.config.TestConfig
@@ -73,13 +74,21 @@ open class TodoApi {
         )
     }
 
+    /**
+     * @param isExists if [false], then will check if [expectedTodo] is not found
+     * */
     @Step("Check TODO by ID")
     fun `Check TODO by ID`(
         expectedTodo: TodoDto,
+        isExists: Boolean = true,
     ) {
         val allPosts = `Get all TODOs`()
         val existingPost = allPosts?.find { it.id == expectedTodo.id }
-        assertTrue(existingPost != null, "TODO with id ${expectedTodo.id} not found")
+        if (!isExists) {
+            assertNull(existingPost, "TODO with id ${expectedTodo.id} found")
+            return
+        }
+        assertNotNull(existingPost, "TODO with id ${expectedTodo.id} not found")
         assertAll(
             { assertEquals(expectedTodo.id, existingPost!!.id) },
             { assertEquals(expectedTodo.text, existingPost!!.text) },

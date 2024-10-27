@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class TodoDto(
-    val id: ULong,
+    val id: Long,
     val text: String,
     val completed: Boolean = false
 )

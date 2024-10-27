@@ -14,7 +14,7 @@ class CreateTodoDtoTest : BaseTest() {
     @DisplayName("Create Todo")
     fun `Create Todo`() {
         val newTodo = TodoDto(
-            id = IdGenerator.generateRandomULong(),
+            id = IdGenerator.generateRandomLong(),
             text = "New todo item 777"
         )
 
@@ -36,7 +36,7 @@ class CreateTodoDtoTest : BaseTest() {
     @DisplayName("Create Todo with empty text")
     fun `Create Todo with empty text`() {
         val newTodo = TodoDto(
-            id = IdGenerator.generateRandomULong(),
+            id = IdGenerator.generateRandomLong(),
             text = ""
         )
 
@@ -58,8 +58,8 @@ class CreateTodoDtoTest : BaseTest() {
     @DisplayName("Create Todo with max long text")
     fun `Create Todo with max long text`() {
         val newTodo = TodoDto(
-            id = IdGenerator.generateRandomULong(),
-            text = "C".repeat(128)
+            id = IdGenerator.generateRandomLong(),
+            text = "C".repeat(16330)
         )
 
         TestFlow()
@@ -77,23 +77,24 @@ class CreateTodoDtoTest : BaseTest() {
     }
 
     @Test
-    @DisplayName("Create Todo with max ULong id")
-    fun `Create Todo with max ULong id`() {
+    @DisplayName("Create Todo with over than max long text")
+    fun `Create Todo with over than max long text`() {
         val newTodo = TodoDto(
-            id = ULong.MAX_VALUE,
-            text = "New todo item 888"
+            id = IdGenerator.generateRandomLong(),
+            text = "C".repeat(16331)
         )
 
         TestFlow()
             .step("Create todo") {
                 `Add new TODO`(
                     newTodo,
-                    expectedResponseCode = HttpStatus.SC_CREATED
+                    expectedResponseCode = HttpStatus.SC_REQUEST_TOO_LONG
                 )
             }
             .step("Check todo") {
                 `Check TODO by ID`(
-                    newTodo
+                    newTodo,
+                    isExists = false
                 )
             }
     }
