@@ -2,6 +2,6 @@ services:
   todo-app:
     image: registry.gitlab.com/themukha/todo-app:latest
     ports:
-      - "8080:4242"
+      - "8086:4242"
     environment:
       - VERBOSE=1

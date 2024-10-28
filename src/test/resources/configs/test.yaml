@@ -1,4 +1,5 @@
 service:
-  baseUrl: http://localhost:8080
+  baseUrl: http://localhost
+  port: 8086
   username: admin
   password: admin

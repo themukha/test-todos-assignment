@@ -1,11 +1,14 @@
 package tech.themukha.todo.tests
 
+import io.restassured.RestAssured.baseURI
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.TestInstance
 import org.testcontainers.containers.DockerComposeContainer
 import org.testcontainers.containers.wait.strategy.Wait
 import org.testcontainers.junit.jupiter.Testcontainers
+import tech.themukha.todo.tests.config.TestConfig.BASE_URL
+import tech.themukha.todo.tests.config.TestConfig.PORT
 import tech.themukha.todo.tests.logging.TestLogger
 import java.io.File
 
@@ -27,6 +30,7 @@ open class BaseTest {
             try {
                 composeContainer.start()
                 logger.info("Container with service started")
+                baseURI = "$BASE_URL:$PORT"
             } catch (e: Exception) {
                 logger.error("Error while starting container: ${e.message}")
                 throw e

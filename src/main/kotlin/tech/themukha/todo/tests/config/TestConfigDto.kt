@@ -6,6 +6,7 @@ data class TestConfigDto(
 
 data class ServiceConfig(
     val baseUrl: String,
+    val port: Int,
     val username: String,
     val password: String,
 )

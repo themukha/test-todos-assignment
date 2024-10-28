@@ -1,22 +1,17 @@
 package tech.themukha.todo.tests.api
 
 import io.qameta.allure.Step
-import io.restassured.RestAssured.baseURI
 import org.apache.http.HttpStatus
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.assertAll
 import tech.themukha.todo.tests.api.RestApiHelper.callApi
-import tech.themukha.todo.tests.config.TestConfig
 import tech.themukha.todo.tests.dto.GetAllTodoDto
 import tech.themukha.todo.tests.model.TodoDto
 import tech.themukha.todo.tests.utils.DataClassExtensions.toParams
 
 open class TodoApi {
-    init {
-        baseURI = TestConfig.BASE_URL
-    }
 
     @Step("Get all TODOs with offset {offset} and limit {limit}")
     fun `Get all TODOs`(
