@@ -20,7 +20,7 @@ class PostTodosTest : BaseTest() {
         testCase: String,
         newTodo: TodoDto,
         expectedResponse: Int,
-        isExists: Boolean = true
+        isExists: Boolean
     ) {
         TestFlow()
             .step("Create todo") {

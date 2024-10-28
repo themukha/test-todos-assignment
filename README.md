@@ -44,12 +44,10 @@
 
 ### `PUT /todos/:id`
 
-* [ ] **Successful update of a TODO:** Verify a 200 OK status and retrieval of the updated TODO.
-* [ ] **Test updating a non-existent TODO:** Verify appropriate error handling.
-* [ ] **Test with empty text:** Verify behavior when the `text` field is updated to empty.
-* [ ] **Test with changing completed status:**  Update the `completed` status from true to false and vice versa.
-* [ ] **Checklist for future tests:**
-    * [ ] Load testing with concurrent requests via Gatling.
+* [X] **Successful update of a TODO:** Verify a 200 OK status and retrieval of the updated TODO.
+* [X] **Test updating a non-existent TODO:** Verify appropriate error handling.
+* [X] **Test with empty text:** Verify behavior when the `text` field is updated to empty.
+* [X] **Test with changing completed status:**  Update the `completed` status from true to false and vice versa.
 
 ### `DELETE /todos/:id`
 

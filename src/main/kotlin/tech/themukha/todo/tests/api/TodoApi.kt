@@ -50,12 +50,14 @@ open class TodoApi {
 
     @Step("Update existing TODO with ID")
     fun `Update existing TODO`(
-        putTodo: TodoDto,
+        todoId: Long,
+        updatedTodo: TodoDto,
         expectedResponseCode: Int = HttpStatus.SC_OK,
     ) {
         callApi<TodoDto, TodoDto>(
             RestEndpoint.PUT_TODO,
-            requestBody = putTodo,
+            requestBody = updatedTodo,
+            pathParams = mapOf("todoId" to todoId),
             expectedResponseCode = expectedResponseCode,
         )
     }

@@ -67,4 +67,36 @@ object TodoDataProvider {
         Arguments.of(-1, null, null, HttpStatus.SC_BAD_REQUEST, 0),
         Arguments.of(null, -1, null, HttpStatus.SC_BAD_REQUEST, 0),
     )
+
+    @JvmStatic
+    fun putTodoProvider(): Stream<Arguments> = Stream.of(
+        Arguments.of(
+            "Successful update",
+            TodoDto(id = IdGenerator.generateRandomLong(), text = "Initial text", completed = false),
+            TodoDto(id = IdGenerator.generateRandomLong(), text = "Updated text", completed = true),
+            HttpStatus.SC_OK,
+            true
+        ),
+        Arguments.of(
+            "Update non-existent TODO",
+            TodoDto(id = IdGenerator.generateRandomLong(), text = "Initial text", completed = false),
+            TodoDto(id = IdGenerator.generateRandomLong(), text = "Updated text", completed = true),
+            HttpStatus.SC_NOT_FOUND,
+            false
+        ),
+        Arguments.of(
+            "Update with empty text",
+            TodoDto(id = IdGenerator.generateRandomLong(), text = "Initial text", completed = false),
+            TodoDto(id = IdGenerator.generateRandomLong(), text = "", completed = false),
+            HttpStatus.SC_OK,
+            true
+        ),
+        Arguments.of(
+            "Update completed status",
+            TodoDto(id = IdGenerator.generateRandomLong(), text = "Initial text", completed = false),
+            TodoDto(id = IdGenerator.generateRandomLong(), text = "Initial text", completed = true),
+            HttpStatus.SC_OK,
+            true
+        )
+    )
 }
