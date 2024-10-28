@@ -95,4 +95,34 @@ open class TodoApi {
             { assertEquals(expectedTodo.completed, existingPost!!.completed) }
         )
     }
+
+    /**
+     * @param isExists if [false], then will check if [expectedTodos] are not found
+     * */
+    @Step("Check TODO by ID")
+    fun `Check TODOs by ID`(
+        expectedTodos: List<TodoDto>,
+        offset: Int? = null,
+        limit: Int? = null,
+        isExists: Boolean = true,
+    ) {
+        val allPosts = `Get all TODOs`(offset = offset, limit = limit)
+        if (!isExists) {
+            expectedTodos.forEach { expectedTodo ->
+                val existingPost = allPosts?.find { it.id == expectedTodo.id }
+                assertNull(existingPost, "TODO with id ${expectedTodo.id} found")
+            }
+            return
+        }
+
+        expectedTodos.forEach { expectedTodo ->
+            val existingPost = allPosts?.find { it.id == expectedTodo.id }
+            assertNotNull(existingPost, "TODO with id ${expectedTodo.id} not found")
+            assertAll(
+                { assertEquals(expectedTodo.id, existingPost!!.id) },
+                { assertEquals(expectedTodo.text, existingPost!!.text) },
+                { assertEquals(expectedTodo.completed, existingPost!!.completed) }
+            )
+        }
+    }
 }

@@ -22,11 +22,11 @@
 
 ### `GET /todos`
 
-* [ ] **Successful get all TODOs:** Verify a 200 OK status and correct JSON structure.
-* [ ] **Test with offset and limit:** Verify correct pagination with various combinations of `offset` and `limit`.
-* [ ] **Test with offset more than records:**  Verify behavior when `offset` exceeds the total number of TODOs.
-* [ ] **Test with zero limit:** Verify that a limit of 0 returns an empty list.
-* [ ] **Test with invalid offset and limit:** Verify error handling for negative or non-numeric values.
+* [X] **Successful get all TODOs:** Verify a 200 OK status and correct JSON structure.
+* [X] **Test with offset and limit:** Verify correct pagination with various combinations of `offset` and `limit`.
+* [X] **Test with offset more than records:**  Verify behavior when `offset` exceeds the total number of TODOs.
+* [X] **Test with zero limit:** Verify that a limit of 0 returns an empty list.
+* [X] **Test with invalid offset and limit:** Verify error handling for negative or non-numeric values.
 
 ### `POST /todos`
 

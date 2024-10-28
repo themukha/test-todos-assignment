@@ -40,7 +40,7 @@ object TodoDataProvider {
             "with over than max long text",
             TodoDto(
                 id = IdGenerator.generateRandomLong(),
-                text = "C".repeat(16331)
+                text = "C".repeat(100000)
             ),
             HttpStatus.SC_REQUEST_TOO_LONG,
             false
@@ -55,5 +55,16 @@ object TodoDataProvider {
             HttpStatus.SC_CREATED,
             true
         )
+    )
+
+    @JvmStatic
+    fun getTodoProvider(): Stream<Arguments> = Stream.of(
+        Arguments.of(null, null, 15, HttpStatus.SC_OK, 15),
+        Arguments.of(0, 5, 5, HttpStatus.SC_OK, 15),
+        Arguments.of(5, 10, 5, HttpStatus.SC_OK, 15),
+        Arguments.of(2, 0, 0, HttpStatus.SC_OK, 15),
+        Arguments.of(1000, null, 15, HttpStatus.SC_OK, 15),
+        Arguments.of(-1, null, null, HttpStatus.SC_BAD_REQUEST, 0),
+        Arguments.of(null, -1, null, HttpStatus.SC_BAD_REQUEST, 0),
     )
 }

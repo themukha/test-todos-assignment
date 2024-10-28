@@ -1,5 +1,6 @@
 package tech.themukha.todo.tests
 
+import io.qameta.allure.Epic
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import tech.themukha.todo.tests.flow.TestFlow
@@ -9,6 +10,7 @@ import tech.themukha.todo.tests.utils.PerformanceTestUtil.percentile
 import java.util.concurrent.atomic.AtomicLong
 
 @DisplayName("Performance Test")
+@Epic("Performance testing")
 class PerformanceTest : BaseTest() {
     @Test
     @DisplayName("Test Post Todos Performance")
