@@ -11,7 +11,7 @@ class TestFlow(webSocketClient: WebSocketManager = BaseTest.webSocketClient) : T
     fun step(stepName: String, action: TestFlow.() -> Unit): TestFlow {
         logger.trace("Starting step `$stepName`")
         try {
-            action()
+            this.action()
             logger.trace("Step `$stepName` completed successfully")
         } catch (e: Throwable) {
             logger.error("Step `$stepName` failed: ${e.message}")

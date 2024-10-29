@@ -8,9 +8,7 @@ data class WebSocketDto(
     val type: WebSocketType,
 )
 
+@Suppress("unused")
 enum class WebSocketType {
     new_todo,
 }
-
-
-fun WebSocketDto.toTodoDto(): TodoDto = data

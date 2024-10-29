@@ -6,6 +6,7 @@ import tech.themukha.todo.tests.model.TodoDto
 import tech.themukha.todo.tests.utils.IdGenerator
 import java.util.stream.Stream
 
+@Suppress("unused")
 object TodoDataProvider {
     @JvmStatic
     fun createTodoProvider(): Stream<Arguments> = Stream.of(

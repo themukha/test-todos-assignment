@@ -76,7 +76,7 @@ open class TodoApi(
     }
 
     /**
-     * @param isExists if [false], then will check if [expectedTodo] is not found
+     * @param isExists if ***false***, then will check if [expectedTodo] is not found
      * */
     @Step("Check TODO by ID")
     fun `Check TODO by ID`(
@@ -98,7 +98,7 @@ open class TodoApi(
     }
 
     /**
-     * @param isExists if [false], then will check if [expectedTodos] are not found
+     * @param isExists if ***false***, then will check if [expectedTodos] are not found
      * */
     @Step("Check TODO by ID")
     fun `Check TODOs by ID`(

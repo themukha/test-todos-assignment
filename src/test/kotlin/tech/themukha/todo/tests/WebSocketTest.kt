@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 import tech.themukha.todo.tests.flow.BaseTest
 import tech.themukha.todo.tests.flow.TestFlow
-import tech.themukha.todo.providers.WebSocketTestData
+import tech.themukha.todo.tests.model.TodoDto
 
 @DisplayName("WebSocket Todos tests")
 @Epic("WebSocket Todos Notifications")
@@ -18,16 +18,16 @@ class WebSocketTest : BaseTest() {
     @MethodSource("tech.themukha.todo.providers.WebSocketDataProvider#webSocketTestArguments")
     @DisplayName("Test WebSocket Notifications")
     fun `Test WebSocket Notifications`(
-        testData: WebSocketTestData
+        newTodos: List<TodoDto>,
+        expectedResponseCode: Int,
     ) {
-        val newTodos = testData.todos
 
         TestFlow()
             .step("Create, Update and Delete TODO via REST API") {
                 newTodos.forEach { todo ->
                     `Add new TODO`(
                         todo,
-                        testData.expectedResponseCode
+                        expectedResponseCode
                     )
                     `Update existing TODO`(
                         todo.id,

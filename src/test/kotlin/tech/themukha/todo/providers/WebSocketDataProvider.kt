@@ -6,30 +6,29 @@ import tech.themukha.todo.tests.model.TodoDto
 import tech.themukha.todo.tests.utils.IdGenerator
 import java.util.stream.Stream
 
+@Suppress("unused")
 object WebSocketDataProvider {
     @JvmStatic
     fun webSocketTestArguments(): Stream<Arguments> = Stream.of(
         Arguments.of(
-            WebSocketTestData(
-                todos = listOf(
-                    TodoDto(
-                        id  = IdGenerator.generateRandomLong(),
-                        text = "WebSocket Test TODO 1",
-                        completed = false
-                    ),
-                    TodoDto(
-                        id = IdGenerator.generateRandomLong(),
-                        text = "WebSocket Test TODO 2",
-                        completed = true
-                    ),
-                    TodoDto(
-                        id = IdGenerator.generateRandomLong(),
-                        text = "WebSocket Test TODO 3",
-                        completed = false
-                    )
+            listOf(
+                TodoDto(
+                    id  = IdGenerator.generateRandomLong(),
+                    text = "WebSocket Test TODO 1",
+                    completed = false
                 ),
-                expectedResponseCode = HttpStatus.SC_CREATED
-            )
+                TodoDto(
+                    id = IdGenerator.generateRandomLong(),
+                    text = "WebSocket Test TODO 2",
+                    completed = true
+                ),
+                TodoDto(
+                    id = IdGenerator.generateRandomLong(),
+                    text = "WebSocket Test TODO 3",
+                    completed = false
+                )
+            ),
+            HttpStatus.SC_CREATED
         )
     )
 

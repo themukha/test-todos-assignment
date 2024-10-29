@@ -32,10 +32,6 @@ class TestLogger : StepLifecycleListener, ContainerLifecycleListener {
         logger.error(message)
     }
 
-    fun warn(message: String) {
-        logger.warn(message)
-    }
-
     companion object {
         private val logger = LoggerFactory.getLogger(this::class.java)
     }
