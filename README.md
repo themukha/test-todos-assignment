@@ -12,6 +12,10 @@
    ```bash
    cd test-todos-assignment
    ```
+5. **Update Gradle execution permission for Unix systems:**
+   ```bash
+   chmod +x gradlew
+   ```
 
 ## Test Execution
 
