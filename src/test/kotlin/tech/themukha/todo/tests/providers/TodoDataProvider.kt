@@ -99,4 +99,29 @@ object TodoDataProvider {
             true
         )
     )
+
+    @JvmStatic
+    fun deleteTodoArguments(): Stream<Arguments> = Stream.of(
+        Arguments.of(
+            "Successful deletion",
+            TodoDto(id = IdGenerator.generateRandomLong(), text = "Test TODO", completed = false),
+            HttpStatus.SC_NO_CONTENT,
+            false,
+            true
+        ),
+        Arguments.of(
+            "Deleting a non-existent TODO",
+            TodoDto(id = IdGenerator.generateRandomLong(), text = "Test TODO", completed = false),
+            HttpStatus.SC_NO_CONTENT,
+            false,
+            true
+        ),
+        Arguments.of(
+            "Unauthorized deletion",
+            TodoDto(id = IdGenerator.generateRandomLong(), text = "Test TODO", completed = false),
+            HttpStatus.SC_UNAUTHORIZED,
+            true,
+            false
+        )
+    )
 }

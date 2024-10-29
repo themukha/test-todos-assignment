@@ -59,8 +59,9 @@ open class TodoApi {
 
     @Step("Delete existing TODO with ID")
     fun `Delete existing TODO`(
-        todoId: ULong,
+        todoId: Long,
         expectedResponseCode: Int = HttpStatus.SC_NO_CONTENT,
+        isAuthorized: Boolean = true,
     ) {
         val pathParams = mapOf("todoId" to todoId)
         callApi<TodoDto, TodoDto>(
@@ -68,6 +69,7 @@ open class TodoApi {
             requestBody = null,
             pathParams = pathParams,
             expectedResponseCode = expectedResponseCode,
+            isAuthorized = isAuthorized
         )
     }
 

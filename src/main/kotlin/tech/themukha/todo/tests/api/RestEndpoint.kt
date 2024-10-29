@@ -3,7 +3,7 @@ package tech.themukha.todo.tests.api
 import io.restassured.http.Method
 
 
-enum class RestEndpoint(val method: Method, val path: String, val requiredAuth: Boolean = false) {
+enum class RestEndpoint(val method: Method, private val path: String, val requiredAuth: Boolean = false) {
     GET_ALL_TODOS(Method.GET, "/todos"),
     POST_TODO(Method.POST, "/todos"),
     PUT_TODO(Method.PUT, "/todos/{todoId}"),

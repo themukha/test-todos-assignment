@@ -19,8 +19,16 @@ object RestApiHelper {
         pathParams: Map<String, Any>? = null,
         queryParams: Map<String, Any>? = null,
         expectedResponseCode: Int = HttpStatus.SC_OK,
+        isAuthorized: Boolean = true
     ): T? {
-        val response = executeRequest(endpoint, requestBody, pathParams = pathParams, queryParams = queryParams, expectedResponseCode)
+        val response = executeRequest(
+            endpoint,
+            requestBody,
+            pathParams = pathParams,
+            queryParams = queryParams,
+            expectedResponseCode,
+            isAuthorized = isAuthorized
+        )
 
         if (response.statusCode != expectedResponseCode) throw ApiException(expectedResponseCode, response.statusCode, response.body.asString())
 
@@ -43,6 +51,7 @@ object RestApiHelper {
         pathParams: Map<String, Any?>? = null,
         queryParams: Map<String, Any>? = null,
         expectedResponseCode: Int = HttpStatus.SC_OK,
+        isAuthorized: Boolean = true,
     ): Response {
 
         val formattedPath = endpoint.setPathParams(pathParams)
@@ -56,10 +65,10 @@ object RestApiHelper {
             request.queryParams(queryParams)
         }
 
-        if (endpoint.requiredAuth) {
+        if (endpoint.requiredAuth && isAuthorized) {
             val user = TestConfig.USERNAME
             val password = TestConfig.PASSWORD
-            request.auth().basic(user, password)
+            request.auth().preemptive().basic(user, password)
         }
 
         return when (endpoint.method) {

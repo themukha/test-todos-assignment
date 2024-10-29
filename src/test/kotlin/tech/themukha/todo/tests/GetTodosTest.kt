@@ -34,7 +34,6 @@ class GetTodosTest : BaseTest() {
                         id = id,
                         text = "Test TODO $id"
                     )
-                    println(newTodo)
                     `Add new TODO`(newTodo, expectedResponseCode = HttpStatus.SC_CREATED)
                     expectedTodos.add(newTodo)
                 }

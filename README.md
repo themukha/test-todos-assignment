@@ -51,10 +51,9 @@
 
 ### `DELETE /todos/:id`
 
-* [ ] **Successful deletion of a TODO:** Verify a 204 OK status and that the TODO is no longer retrievable.
-* [ ] **Test deleting a non-existent TODO:** Verify appropriate error handling.
-* [ ] **Checklist for future tests:**
-    * [ ] Test deleting a TODO that is referenced by other entities (if relationships exist).
+* [X] **Successful deletion of a TODO:** Verify a 204 OK status and that the TODO is no longer retrievable.
+* [X] **Test deleting a non-existent TODO:** Verify appropriate error handling.
+* [X] **Test deleting without authorization**: Verify UNAUTHORIZED error and that the TODO is available.
 
 ### `/ws` (WebSocket)
 
