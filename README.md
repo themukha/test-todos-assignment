@@ -22,11 +22,11 @@
 1. **Run Gradle Test:**
     1. For Unix systems (**Linux/MacOS**): <br>
         ```bash
-        ./gradlew test
+        ./gradlew cleanTest test
         ```
     2. For **Windows**: <br>
         ```bash
-        ./gradlew.bat test
+        ./gradlew.bat cleanTest test
         ```
 
 ## Where to find report
