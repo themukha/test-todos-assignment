@@ -29,7 +29,7 @@ open class BaseTest {
         fun beforeAll() {
             try {
                 composeContainer.start()
-                logger.info("Container with service started")
+                logger.debug("Container with service started")
                 baseURI = "$BASE_URL:$PORT"
             } catch (e: Exception) {
                 logger.error("Error while starting container: ${e.message}")
@@ -42,7 +42,7 @@ open class BaseTest {
         fun afterAll() {
             try {
                 composeContainer.stop()
-                logger.info("Container with service stopped")
+                logger.debug("Container with service stopped")
             } catch (e: Exception) {
                 logger.error("Error while stopping container: ${e.message}")
             }

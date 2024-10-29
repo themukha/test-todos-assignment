@@ -18,6 +18,7 @@ class GetTodosTest : BaseTest() {
 
     @ParameterizedTest(name = "{index} => offset = {0}, limit = {1}, expectedSize = {2}, expectedResponseCode = {3}")
     @MethodSource("tech.themukha.todo.tests.providers.TodoDataProvider#getTodoProvider")
+    @DisplayName("Get TODOs with offset and limit")
     fun `Get TODOs with offset and limit`(
         offset: Int?,
         limit: Int?,

@@ -8,10 +8,10 @@ class TestFlow : TodoApi() {
 
     @Step("{stepName}")
     fun step(stepName: String, action: TestFlow.() -> Unit): TestFlow {
-        logger.debug("Starting step `$stepName`")
+        logger.trace("Starting step `$stepName`")
         try {
             action()
-            logger.debug("Step `$stepName` completed successfully")
+            logger.trace("Step `$stepName` completed successfully")
         } catch (e: Throwable) {
             logger.error("Step `$stepName` failed: ${e.message}")
             throw e
