@@ -11,11 +11,11 @@
 1. **Run Gradle Test:**
     1. For Unix systems (**Linux/MacOS**): <br>
         ```bash
-        ./gradlew cleanTest test
+        ./gradlew test
         ```
     2. For **Windows**: <br>
         ```bash
-        ./gradlew.bat cleanTest test
+        ./gradlew.bat test
         ```
 
 ## Test Cases
@@ -57,10 +57,9 @@
 
 ### `/ws` (WebSocket)
 
-* [ ] **Connection establishment:** Verify successful WebSocket connection.
-* [ ] **Real-time updates:** Create a TODO via the REST API and verify that a notification is received via the WebSocket.
+* [X] **Real-time updates:** Create some TODOs via the REST API and verify that a notification is received via the WebSocket.
 * [ ] **Checklist for future tests:**
-    * [ ] Test different update notifications scenarios (update, delete).
+    * [ ] Test different update notifications scenarios (update, delete - not implemented yet).
 
 ### Performance Testing (`POST /todos`)
 

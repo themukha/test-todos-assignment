@@ -24,6 +24,10 @@ class TestLogger : StepLifecycleListener, ContainerLifecycleListener {
         logger.debug(message)
     }
 
+    fun trace(message: String) {
+        logger.trace(message)
+    }
+
     fun error(message: String) {
         logger.error(message)
     }

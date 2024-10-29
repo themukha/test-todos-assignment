@@ -2,9 +2,10 @@ package tech.themukha.todo.tests.flow
 
 import io.qameta.allure.Step
 import tech.themukha.todo.tests.api.TodoApi
+import tech.themukha.todo.tests.api.WebSocketManager
 import tech.themukha.todo.tests.logging.TestLogger
 
-class TestFlow : TodoApi() {
+class TestFlow(webSocketClient: WebSocketManager = BaseTest.webSocketClient) : TodoApi(webSocketClient) {
 
     @Step("{stepName}")
     fun step(stepName: String, action: TestFlow.() -> Unit): TestFlow {

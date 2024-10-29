@@ -6,6 +6,7 @@ import org.apache.http.HttpStatus
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
+import tech.themukha.todo.tests.flow.BaseTest
 import tech.themukha.todo.tests.flow.TestFlow
 import tech.themukha.todo.tests.model.TodoDto
 import tech.themukha.todo.tests.utils.DataClassExtensions.trimWithOffsetAndLimit
@@ -17,7 +18,7 @@ import tech.themukha.todo.tests.utils.IdGenerator
 class GetTodosTest : BaseTest() {
 
     @ParameterizedTest(name = "{index} => offset = {0}, limit = {1}, expectedSize = {2}, expectedResponseCode = {3}")
-    @MethodSource("tech.themukha.todo.tests.providers.TodoDataProvider#getTodoProvider")
+    @MethodSource("tech.themukha.todo.providers.TodoDataProvider#getTodoProvider")
     @DisplayName("Get TODOs with offset and limit")
     fun `Get TODOs with offset and limit`(
         offset: Int?,

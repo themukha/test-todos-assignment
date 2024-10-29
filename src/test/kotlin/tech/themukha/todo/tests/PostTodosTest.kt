@@ -5,6 +5,7 @@ import io.qameta.allure.Feature
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
+import tech.themukha.todo.tests.flow.BaseTest
 import tech.themukha.todo.tests.flow.TestFlow
 import tech.themukha.todo.tests.model.TodoDto
 
@@ -14,7 +15,7 @@ import tech.themukha.todo.tests.model.TodoDto
 class PostTodosTest : BaseTest() {
 
     @ParameterizedTest(name = "{index} => {0}")
-    @MethodSource("tech.themukha.todo.tests.providers.TodoDataProvider#createTodoProvider")
+    @MethodSource("tech.themukha.todo.providers.TodoDataProvider#createTodoProvider")
     @DisplayName("Create Todo")
     fun `Create Todo`(
         testCase: String,

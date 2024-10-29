@@ -1,4 +1,4 @@
-package tech.themukha.todo.tests.providers
+package tech.themukha.todo.providers
 
 import org.apache.http.HttpStatus
 import org.junit.jupiter.params.provider.Arguments

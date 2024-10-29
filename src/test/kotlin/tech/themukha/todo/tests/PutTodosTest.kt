@@ -6,6 +6,7 @@ import org.apache.http.HttpStatus
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
+import tech.themukha.todo.tests.flow.BaseTest
 import tech.themukha.todo.tests.flow.TestFlow
 import tech.themukha.todo.tests.model.TodoDto
 
@@ -15,7 +16,7 @@ import tech.themukha.todo.tests.model.TodoDto
 class PutTodosTest : BaseTest() {
 
     @ParameterizedTest(name = "{index} => {0}")
-    @MethodSource("tech.themukha.todo.tests.providers.TodoDataProvider#putTodoProvider")
+    @MethodSource("tech.themukha.todo.providers.TodoDataProvider#putTodoProvider")
     @DisplayName("Update existing TODO")
     fun `Update existing TODO`(
         testCase: String,

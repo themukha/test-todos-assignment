@@ -3,6 +3,7 @@ package tech.themukha.todo.tests
 import io.qameta.allure.Epic
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import tech.themukha.todo.tests.flow.BaseTest
 import tech.themukha.todo.tests.flow.TestFlow
 import tech.themukha.todo.tests.flow.TestFlow.Companion.logger
 import tech.themukha.todo.tests.model.TodoDto

@@ -7,9 +7,7 @@ enum class RestEndpoint(val method: Method, private val path: String, val requir
     GET_ALL_TODOS(Method.GET, "/todos"),
     POST_TODO(Method.POST, "/todos"),
     PUT_TODO(Method.PUT, "/todos/{todoId}"),
-    DELETE_TODO(Method.DELETE, "/todos/{todoId}", true),
-    // TODO: check if need to move to another class when WS is implemented
-    WEBSOCKET_UPDATES_TODO(Method.GET, "/ws");
+    DELETE_TODO(Method.DELETE, "/todos/{todoId}", true);
 
     fun setPathParams(pathParams: Map<String, Any?>? = emptyMap()): String {
         var resultPath = path

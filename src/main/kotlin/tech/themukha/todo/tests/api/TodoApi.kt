@@ -11,7 +11,9 @@ import tech.themukha.todo.tests.dto.GetAllTodoDto
 import tech.themukha.todo.tests.model.TodoDto
 import tech.themukha.todo.tests.utils.DataClassExtensions.toParams
 
-open class TodoApi {
+open class TodoApi(
+    val webSocketClient: WebSocketManager = WebSocketManager().webSocketClient
+) {
 
     @Step("Get all TODOs with offset {offset} and limit {limit}")
     fun `Get all TODOs`(
@@ -124,4 +126,36 @@ open class TodoApi {
             )
         }
     }
+
+    @Step("Get all WebSocket messages")
+    private fun `Get all WebSocket messages`(): List<TodoDto> {
+        return webSocketClient
+            .receivedMessages
+            .toList().map { it.data }
+    }
+
+    @Step("Check expected WebSocket messages")
+    fun `Check all expected WebSocket messages`(
+        expectedMessages: List<TodoDto>
+    ) {
+        val receivedMessages: List<TodoDto> = `Get all WebSocket messages`()
+        assertEquals(expectedMessages.size, receivedMessages.size) {
+            val expectedIds: List<Long> = expectedMessages.map { it.id }
+            val actualIds: List<Long> = receivedMessages.map { it.id }
+            "Received IDs: $actualIds, but expected $expectedIds"
+        }
+        expectedMessages.map { expected ->
+            val actual: TodoDto = receivedMessages
+                .find { it.id == expected.id}
+                ?: throw AssertionError("Expected message with id ${expected.id} not found")
+
+            assertAll(
+                { assertEquals(expected.id, actual.id, "Expected ID: ${expected.id}, but got ${actual.id}") },
+                { assertEquals(expected.text, actual.text, "Expected text ${expected.text}, but got ${actual.text}") },
+                { assertEquals(expected.completed, actual.completed, "Expected completed ${expected.completed}, but got ${actual.completed}") }
+            )
+        }
+
+    }
+
 }

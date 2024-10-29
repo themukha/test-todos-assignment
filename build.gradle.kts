@@ -8,6 +8,7 @@ val logbackVersion: String = "1.5.8"
 val jacksonVersion: String = "2.18.0"
 val testcontainersVersion: String = "1.20.3"
 val kotlinxSerializationVersion: String = "1.6.3"
+val okHttpVersion: String = "4.11.0"
 
 plugins {
     kotlin("jvm") version "1.9.23"
@@ -25,6 +26,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationVersion")
+    runtimeOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxSerializationVersion")
     implementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
     implementation("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
     implementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
@@ -33,12 +35,12 @@ dependencies {
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("ch.qos.logback:logback-core:$logbackVersion")
-    testImplementation("org.testcontainers:testcontainers:$testcontainersVersion")
-    testImplementation("org.testcontainers:junit-jupiter:$testcontainersVersion")
+    implementation("org.testcontainers:testcontainers:$testcontainersVersion")
+    implementation("org.testcontainers:junit-jupiter:$testcontainersVersion")
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
-}
+    implementation("com.squareup.okhttp3:okhttp:$okHttpVersion")}
 
 tasks.test {
     testLogging {
