@@ -23,6 +23,7 @@ open class BaseTest {
     fun beforeEach() {
         try {
             webSocketClient.startConnection()
+            Thread.sleep(1000)
             logger.debug("Websocket connection started")
         } catch (e: Exception) {
             logger.error("Error while starting websocket connection: ${e.message}")
