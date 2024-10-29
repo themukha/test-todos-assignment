@@ -2,9 +2,16 @@
 
 ## Getting Started
 
-1. **Git clone the repo**
-2. **Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)**
-3. **Run Docker Engine** (runs automatically when Docker Desktop opens)
+1. **Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)**
+2. **Run Docker Engine** (runs automatically when Docker Desktop opens)
+3. **Git clone the repo**
+   ```bash
+   git clone https://github.com/themukha/test-todos-assignment.git
+   ```
+4. **Move to cloned directory**
+   ```bash
+   cd test-todos-assignment
+   ```
 
 ## Test Execution
 
@@ -17,6 +24,12 @@
         ```bash
         ./gradlew.bat test
         ```
+
+## Where to find report
+
+1. **Move to path**:
+   `/build/reports/allure-report/allureReport`
+2. **Open file `index.html` in your browser**
 
 ## Test Cases
 
